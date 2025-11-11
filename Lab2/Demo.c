@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 int main(){
     float a, b, nhan, chia;
     printf("Nhap vao 2 so thuc: ");

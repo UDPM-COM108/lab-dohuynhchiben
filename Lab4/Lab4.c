@@ -1,90 +1,96 @@
 #include <stdio.h>
+#include <math.h>
 
-int main() {
 
-    int luachon;
+// BÀI 1: Tính trung bình các số chia hết cho 2
+void bai1() {
+    int a[20], i, count = 0;
+    float tong = 0, trungBinh = 0;
 
-    do {
-        printf("\n CHƯƠNG TRÌNH TỔNG HỢP 4 BÀI \n");
-        printf("1. TÍNH TRUNG BÌNH TỔNG CỦA CÁC SỐ TỰ NHIÊN CHIA HẾT CHO 2\n");
-        printf("2. XÁC ĐỊNH SỐ NGUYÊN TỐ\n");
-        printf("3. XÁC ĐỊNH SỐ CHÍNH PHƯƠNG\n");
-        printf("4. Thoát Chương Trình\n");
-        printf("Nhập lựa chọn: ");
-        scanf("%d", &luachon);
+    printf("\n BAI 1: TRUNG BINH CAC SO CHIA HET CHO 2\n");
+    printf("Nhap 20 so nguyen:\n");
 
-        if (luachon == 1) {
-            //BÀI 1: TÍNH TRUNG BÌNH TỔNG CỦA CÁC SỐ TỰ NHIÊN CHIA HẾT CHO 2
-            int min, max;
-            printf("Nhap min: ");
-            scanf("%d", &min);
-            printf("Nhap max: ");
-            scanf("%d", &max);
+    for (i = 0; i < 20; i++) {
+        printf("a[%d] = ", i);
+        scanf("%d", &a[i]);
 
-            int i = min;
-            float tong = 0, bienDem = 0, trungBinh = 0;
-
-            while (i <= max) {
-                if (i % 2 == 0) {
-                    tong += i;
-                    bienDem++;
-                }
-                i++;
-            }
-
-            if (bienDem == 0) {
-                printf("Khong co so nao chia het cho 2 trong khoang.\n");
-            } else {
-                trungBinh = tong / bienDem;
-                printf("Trung binh = %.2f\n", trungBinh);
-            }
-
-        } else if (luachon == 2) {
-            //BÀI 2: XÁC ĐỊNH SỐ NGUYÊN TỐ
-            int x, count = 0, i;
-            printf("Nhap x: ");
-            scanf("%d", &x);
-
-            if (x < 2) {
-                printf("%d khong phai so nguyen to\n", x);
-            } else {
-                for (i = 2; i < x; i++) {
-                    if (x % i == 0) {
-                        count++;
-                    }
-                }
-
-                if (count == 0)
-                    printf("%d la so nguyen to\n", x);
-                else
-                    printf("%d khong phai so nguyen to\n", x);
-            }
-
-        } else if (luachon == 3) {
-            // BÀI 3: XÁC ĐỊNH SỐ CHÍNH PHƯƠNG
-            int x, i, count = 0;
-            printf("Nhap x: ");
-            scanf("%d", &x);
-
-            for (i = 1; i < x; i++) {
-                if (i * i == x) {
-                    count = 1;
-                    break;
-                }
-            }
-
-            if (count == 1)
-                printf("%d la so chinh phuong\n", x);
-            else
-                printf("%d khong phai so chinh phuong\n", x);
-
-        } else if (luachon == 4) {
-            printf("Thoat chuong trinh...\n");
-        } else {
-            printf("Lua chon khong hop le! Vui long nhap 1 - 4.\n");
+        if (a[i] % 2 == 0) {
+            tong += a[i];
+            count++;
         }
+    }
 
-    } while (luachon != 4);
+    if (count > 0) {
+        trungBinh = tong / count;
+        printf("\nTrung binh cac so chia het cho 2 la: %.2f\n", trungBinh);
+    } else {
+        printf("\nKhong co so nao chia het cho 2.\n");
+    }
+}
+
+// BÀI 2: Kiểm tra số nguyên tố
+void bai2() {
+    int x, i, count = 0;
+
+    printf("\n BAI 2: KIEM TRA SO NGUYEN TO \n");
+    printf("Nhap 1 so nguyen: ");
+    scanf("%d", &x);
+
+    for (i = 1; i <= x; i++) {
+        if (x % i == 0) count++;
+    }
+
+    if (count == 2)
+        printf("%d la so nguyen to.\n", x);
+    else
+        printf("%d khong phai so nguyen to.\n", x);
+}
+
+// BÀI 3: Kiểm tra số chính phương
+void bai3() {
+    int x;
+
+    printf("\n BAI 3: KIEM TRA SO CHINH PHUONG \n");
+    printf("Nhap x: ");
+    scanf("%d", &x);
+
+    int i = sqrt(x);
+    if (i * i == x)
+        printf("%d la so chinh phuong.\n", x);
+    else
+        printf("%d khong phai so chinh phuong.\n", x);
+}
+
+// BÀI 4: MENU CHO 3 BÀI TRÊN
+int main() {
+    int chon;
+
+    while (1) {
+        printf("\n=====MENU =====\n");
+        printf("1. Bai 1: Trung bình các số chia hết cho 2\n");
+        printf("2. Bai 2: Kiểm tra số nguyên tố\n");
+        printf("3. Bai 3: Kiểm tra số chính phương\n");
+        printf("4. Thoát chương trình\n");
+        printf("Nhập lựa chọn: ");
+        scanf("%d", &chon);
+
+        switch (chon) {
+            case 1:
+                bai1();
+                break;
+            case 2:
+                bai2();
+                break;
+            case 3:
+                bai3();
+                break;
+            case 4:
+                printf("\nThoat chuong trinh...\n");
+                return 0;
+            default:
+                printf("\nLua chon khong hop le! Moi nhap lai.\n");
+        }
+    }
 
     return 0;
 }

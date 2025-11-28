@@ -187,7 +187,7 @@ int main() {
             printf("Thoat chuong trinh...\n");
             break;
 
-        default:
+            default:
             printf("Lua chon khong hop le! Moi nhap lai.\n");
         }
 
@@ -195,3 +195,8 @@ int main() {
 
     return 0;
 }
+
+        
+
+
+

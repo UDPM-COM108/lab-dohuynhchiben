@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "ASM.C": "cpp"
+        "ASM.C": "cpp",
+        "demo_4.C": "cpp"
     }
 }

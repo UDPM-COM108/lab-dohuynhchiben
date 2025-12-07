@@ -1,7 +1,6 @@
 #include <stdio.h>
 
 int main(){
-   
     int luachon;
     do {
     printf("1.tính tổng\n");

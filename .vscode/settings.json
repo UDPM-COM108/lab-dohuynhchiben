@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "ASM.C": "cpp",
-        "demo_4.C": "cpp"
+        "demo_4.C": "cpp",
+        "stdio.h": "c"
     }
 }

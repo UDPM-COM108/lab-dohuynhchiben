@@ -151,31 +151,54 @@ else if(kwh <= 200){
     printf("Số tiền điện phải trả: %.0f VND\n", tien);
 }
 
+void chucNang5(){
+    int tien;
+    int a[9] = {500, 200, 100, 50, 20, 10, 5, 2, 1};
+
+    printf("Nhập số tiền cần đổi: ");
+    scanf("%d", &tien);
+
+    if(tien <= 0){
+        printf("Số tiền không hợp lệ!\n");
+        return;
+    }
+
+    printf("\nKết quả đổi tiền:\n");
+
+    for(int i = 0; i < 9; i++){
+        if(tien >= a[i]){
+            int soTo = tien / a[i];   
+            tien %= a[i];            
+            printf("%d tờ mệnh giá %d\n", soTo, a[i]);
+        }
+    }
+}
 
 
 int main(){
     int chon;
 
     do{
-        printf("\n MENU");
-        printf("\n1. Kiểm tra số nguyên / số nguyên tố / chính phương");
-        printf("\n2. Tìm UCLN và BCNN của 2 số");
-        printf("\n3. Tính tiền Karaoke");
-        printf("\n4. Tính tiền điện");
-        printf("\n0. Thoát");
-        printf("\nNhập lựa chọn: ");
-        scanf("%d", &chon);
+    printf("\n MENU");
+    printf("\n1. Kiểm tra số nguyên / số nguyên tố / chính phương");
+    printf("\n2. Tìm UCLN và BCNN của 2 số");
+    printf("\n3. Tính tiền Karaoke");
+    printf("\n4. Tính tiền điện");
+    printf("\n5. Đổi tiền theo mệnh giá");
+    printf("\n0. Thoát");
+    printf("\nNhập lựa chọn: ");
+    scanf("%d", &chon);
 
-        switch(chon){
-            case 1: chucNang1(); break;
-            case 2: chucNang2(); break;
-            case 3: chucNang3(); break;
-            case 4: chucNang4(); break;
-            case 0: printf("Thoát chương trình.\n"); break;
-            default: printf("Lựa chọn không hợp lệ!\n");
-        }
+    switch(chon){
+        case 1: chucNang1(); break;
+        case 2: chucNang2(); break;
+        case 3: chucNang3(); break;
+        case 4: chucNang4(); break;
+        case 5: chucNang5(); break;
+        case 0: printf("Thoát chương trình.\n"); break;
+        default: printf("Lựa chọn không hợp lệ!\n");
+    }
 
-    } while(chon != 0);
-
-    return 0;
+} while(chon != 0);
+return 0;
 }

@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <string.h>
 //#include <ctype.h>
@@ -47,7 +46,7 @@ void xeploaistructsinhvien(struct sinhvien x[], int n){
 }
 int main(){
     int i,j,slsv;
-    struct sinhvien COM108[1];
+    struct sinhvien COM108[39];
     printf("nhap so luong SV:");
     scanf("%d",&slsv);
     inputstructsinhvien( COM108,slsv);

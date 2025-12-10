@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <math.h>
-
+#include <string.h>
 
 void kiemTraNguyenTo(int n){
     if(n < 2){
@@ -151,6 +151,7 @@ else if(kwh <= 200){
     printf("Số tiền điện phải trả: %.0f VND\n", tien);
 }
 
+// chức năng 5
 void chucNang5(){
     int tien;
     int a[9] = {500, 200, 100, 50, 20, 10, 5, 2, 1};
@@ -174,31 +175,118 @@ void chucNang5(){
     }
 }
 
+// chức năng 7
 
+void chucNang7(){
+    float phanTramVay;
+    float giaXe = 500000000;   
+    float laiNam = 0.072;      
+    float laiThang = laiNam / 12;
+    int soThang = 24 * 12;
+
+    printf("Nhập %% vay tối đa (vd 80): ");
+    scanf("%f", &phanTramVay);
+
+    float traTruoc = giaXe * (100 - phanTramVay) / 100;
+    float tienVay = giaXe * phanTramVay / 100;
+
+    float r = laiThang;
+    float P = tienVay;
+
+    float mu = 1;
+    for(int i = 0; i < soThang; i++){
+        mu = mu * (1 + r);
+    }
+
+    float monthly = P * r * mu / (mu - 1);
+
+    printf("Tiền trả trước: %.0f VND\n", traTruoc);
+    printf("Tiền vay: %.0f VND\n", tienVay);
+    printf("Tiền trả hàng tháng: %.0f VND\n", monthly);
+}
+
+
+// chức năng 8
+
+struct SinhVien {
+    char hoTen[50];
+    float diem;
+    char hocLuc[20];
+};
+
+void xepLoai(float d, char hl[]){
+    if (d >= 9) strcpy(hl, "Xuat sac");
+    else if (d >= 8) strcpy(hl, "Gioi");
+    else if (d >= 6.5) strcpy(hl, "Kha");
+    else if (d >= 5) strcpy(hl, "Trung binh");
+    else strcpy(hl, "Yeu");
+}
+
+void chucNang8(){
+    int n;
+    printf("Nhập số sinh viên: ");
+    scanf("%d", &n);
+    getchar();
+
+    struct SinhVien sv[n];
+
+    for(int i = 0; i < n; i++){
+        printf("\nNhập họ tên: ");
+        fgets(sv[i].hoTen, 50, stdin);
+        sv[i].hoTen[strcspn(sv[i].hoTen, "\n")] = 0;
+
+        printf("Nhập điểm: ");
+        scanf("%f", &sv[i].diem);
+        getchar();
+
+        xepLoai(sv[i].diem, sv[i].hocLuc);
+    }
+
+    for(int i = 0; i < n-1; i++){
+        for(int j = i+1; j < n; j++){
+            if(sv[i].diem < sv[j].diem){
+                struct SinhVien temp = sv[i];
+                sv[i] = sv[j];
+                sv[j] = temp;
+            }
+        }
+    }
+
+    printf("\nDANH SÁCH SAU KHI SẮP XẾP\n");
+    for(int i = 0; i < n; i++){
+        printf("%d. %s - %.1f điểm - %s\n",
+            i+1, sv[i].hoTen, sv[i].diem, sv[i].hocLuc);
+    }
+}
 int main(){
     int chon;
 
     do{
-    printf("\n MENU");
-    printf("\n1. Kiểm tra số nguyên / số nguyên tố / chính phương");
-    printf("\n2. Tìm UCLN và BCNN của 2 số");
-    printf("\n3. Tính tiền Karaoke");
-    printf("\n4. Tính tiền điện");
-    printf("\n5. Đổi tiền theo mệnh giá");
-    printf("\n0. Thoát");
-    printf("\nNhập lựa chọn: ");
-    scanf("%d", &chon);
+        printf("\n MENU ");
+        printf("\n1. Kiểm tra số nguyên / số nguyên tố / chính phương");
+        printf("\n2. Tìm UCLN và BCNN của 2 số");
+        printf("\n3. Tính tiền Karaoke");
+        printf("\n4. Tính tiền điện");
+        printf("\n5. Đổi tiền theo mệnh giá");
+        printf("\n7. Tính vay tiền mua xe");
+        printf("\n8. Sắp xếp thông tin sinh viên");
+        printf("\n0. Thoát");
+        printf("\nNhập lựa chọn: ");
+        scanf("%d", &chon);
 
-    switch(chon){
-        case 1: chucNang1(); break;
-        case 2: chucNang2(); break;
-        case 3: chucNang3(); break;
-        case 4: chucNang4(); break;
-        case 5: chucNang5(); break;
-        case 0: printf("Thoát chương trình.\n"); break;
-        default: printf("Lựa chọn không hợp lệ!\n");
-    }
+        switch(chon){
+            case 1: chucNang1(); break;
+            case 2: chucNang2(); break;
+            case 3: chucNang3(); break;
+            case 4: chucNang4(); break;
+            case 5: chucNang5(); break;
+            case 7: chucNang7(); break;
+            case 8: chucNang8(); break;
+            case 0: printf("Thoát chương trình.\n"); break;
+            default: printf("Lựa chọn không hợp lệ!\n");
+        }
 
-} while(chon != 0);
-return 0;
+    } while(chon != 0);
+
+    return 0;
 }

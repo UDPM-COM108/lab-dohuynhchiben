@@ -2,6 +2,7 @@
 #include <math.h>
 #include <string.h>
 
+
 void kiemTraNguyenTo(int n){
     if(n < 2){
         printf("Số %d KHÔNG phải số nguyên tố.\n", n);
@@ -34,14 +35,12 @@ void chucNang1(){
     int x;
     printf("Nhập số nguyên x: ");
     scanf("%d", &x);
-
-    printf("\n kết quả chức năng 1 \n");
+    
     printf("Số %d là số nguyên.\n", x);
 
     kiemTraNguyenTo(x);
     kiemTraChinhPhuong(x);
 }
-
 
 void timUCLN(int a, int b){
     int x = a, y = b;
@@ -117,7 +116,7 @@ void chucNang3(){
 // chức năng 4
 
 
-void chucNang4(){
+void chucNang4(){ 
     int kwh;
     printf("Nhập số kWh điện đã sử dụng: ");
     scanf("%d", &kwh);
@@ -174,40 +173,34 @@ void chucNang5(){
         }
     }
 }
-
-// chức năng 7
-
+ // chức năng 7
 void chucNang7(){
-    float phanTramVay;
-    float giaXe = 500000000;   
-    float laiNam = 0.072;      
-    float laiThang = laiNam / 12;
-    int soThang = 24 * 12;
+    float phanTram;
+    const float tongTien = 500000000; // 500 triệu
+    const float laiThang = 0.072 / 12; // 0.6%/tháng
+    const int soThang = 24 * 12; // 288 tháng
 
-    printf("Nhập %% vay tối đa (vd 80): ");
-    scanf("%f", &phanTramVay);
+    printf("Nhập %% vay tối đa (ví dụ 80): ");
+    scanf("%f", &phanTram);
 
-    float traTruoc = giaXe * (100 - phanTramVay) / 100;
-    float tienVay = giaXe * phanTramVay / 100;
-
-    float r = laiThang;
-    float P = tienVay;
-
-    float mu = 1;
-    for(int i = 0; i < soThang; i++){
-        mu = mu * (1 + r);
+    if(phanTram <= 0 || phanTram >= 100){
+        printf("Phần trăm vay không hợp lệ!\n");
+        return;
     }
 
-    float monthly = P * r * mu / (mu - 1);
+    float tienVay = tongTien * (phanTram / 100.0);
+    float traTruoc = tongTien - tienVay;
 
-    printf("Tiền trả trước: %.0f VND\n", traTruoc);
-    printf("Tiền vay: %.0f VND\n", tienVay);
-    printf("Tiền trả hàng tháng: %.0f VND\n", monthly);
+    float r = laiThang;
+    float monthly = tienVay * (r * pow(1 + r, soThang)) / (pow(1 + r, soThang) - 1);
+
+    printf("\n===== KẾT QUẢ VAY TIỀN =====\n");
+    printf("Số tiền trả trước: %.0f VND\n", traTruoc);
+    printf("Số tiền trả hàng tháng: %.0f VND\n", monthly);
 }
 
 
 // chức năng 8
-
 struct SinhVien {
     char hoTen[50];
     float diem;
@@ -268,7 +261,7 @@ int main(){
         printf("\n3. Tính tiền Karaoke");
         printf("\n4. Tính tiền điện");
         printf("\n5. Đổi tiền theo mệnh giá");
-        printf("\n7. Tính vay tiền mua xe");
+        printf("\n7. Vay tiền mua xe");
         printf("\n8. Sắp xếp thông tin sinh viên");
         printf("\n0. Thoát");
         printf("\nNhập lựa chọn: ");

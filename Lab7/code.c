@@ -1,36 +1,30 @@
 #include <stdio.h>
 
-void chucNang1(){
+int main(){ 
+    int a[9]={500,200,100,50,20,10,5,2,1};
+    int tien;
 
-}
+    printf("nhập vào tiền cần đổi: ");
+    scanf("%d", &tien);
 
-void chucNang2(){
-
-}
-void chucNang3(){
-    
-}
-int main(){
-    int luachon;
-    do {
-        printf("1.Xét số nguyên\n");
-        printf("2.Tìm max\n");
-        printf("3.Tính tổnn\n");
-        printf("0.thoát...\n");
-        printf("nhập lựa chọn: ");
-        scanf("%d", &luachon);
-
-
-        switch(luachon){
-            case 1: chucNang1(); break;
-            case 2: chucNang2(); break;
-            case 3: chucNang3(); break;
-            case 0: printf("thoát chương trình..."); break;
-            default: printf("lựa chọn không hợp lệ ");
-
-}
-
-        }
-        while(luachon != 0);
+    if(tien <= 0){
+        printf("số tiền không hợp lệ");
         return 0;
     }
+
+    printf("số tiền vừa đổi:\n");
+
+    for(int i = 0; i < 9; i++){
+        int soto = 0;   // khai báo bên ngoài if để dùng sau
+
+        if(tien >= a[i]){
+            soto = tien / a[i];
+            tien %= a[i];
+        }
+
+        // luôn in ra theo đúng yêu cầu tối qua
+        printf("%d tờ mệnh giá %d\n", soto, a[i]);
+    }
+
+    return 0;
+}

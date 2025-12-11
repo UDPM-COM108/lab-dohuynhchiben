@@ -15,14 +15,14 @@ int main(){
     printf("số tiền vừa đổi:\n");
 
     for(int i = 0; i < 9; i++){
-        int soto = 0;   // khai báo bên ngoài if để dùng sau
+        int soto = 0;   
 
         if(tien >= a[i]){
             soto = tien / a[i];
             tien %= a[i];
         }
 
-        // luôn in ra theo đúng yêu cầu tối qua
+    
         printf("%d tờ mệnh giá %d\n", soto, a[i]);
     }
 
